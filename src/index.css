@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #14111c;
+  --color-ink-deep: #0f0d15;
+  --color-ink-soft: #1d1929;
+  --color-cream: #f7f1e8;
+  --color-cream-dim: #b6adc4;
+  --color-pink: #ff9ad5;
+  --color-lilac: #c9a9ff;
+  --color-mint: #79efcf;
+  --color-butter: #ffd97e;
+  --color-sky: #a9d8ff;
+
+  --font-display: 'Fredoka', ui-rounded, 'SF Pro Rounded', sans-serif;
+  --font-body: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-ink-deep);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-pink);
+    color: var(--color-ink-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mint);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Subtle dotted texture, like a sketchbook page under the glow. */
+.dot-grid {
+  background-image: radial-gradient(rgba(247, 241, 232, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.12);
+  }
+}
+
+.blob-drift {
+  animation: drift 16s ease-in-out infinite;
+}
+
+.blob-drift-slow {
+  animation: drift 24s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
